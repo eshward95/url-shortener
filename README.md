@@ -10,6 +10,13 @@ To gain insight into the design decisions and architecture, you can review the d
 
 [Design Document](https://sheer-guitar-599.notion.site/URL-Shortener-a4dd3a3a3117421fbe6263c2d184862c?pvs=4)
 
+## Screenshot
+**Dark**
+![Dark](https://github.com/eshward95/url-shortener/blob/main/frontend/screenshots/dark.png?raw=true)
+
+**Light**
+![Light](https://github.com/eshward95/url-shortener/blob/main/frontend/screenshots/light.png?raw=true)
+
 
 ### Technologies Used
 
