@@ -103,7 +103,7 @@ export function List() {
 
   return (
     <Table className="mt-4">
-      <TableCaption>A list of your recent URLs</TableCaption>
+      <TableCaption>A list of recent URLs</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead className="text-lg">Short Link</TableHead>
