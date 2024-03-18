@@ -20,6 +20,7 @@ const create = catchAsync(async (req, res, next) => {
     key: url.shortUrl,
     long_url: url.originalUrl,
     short_url: `${BASE_URL}/${url.shortUrl}`,
+    existing: url.existing || false,
   };
   res.status(201).json({
     status: "success",
@@ -31,11 +32,7 @@ const redirect = catchAsync(async (req, res, next) => {
   if (!url) {
     throw new ApiError("URL not found", 404);
   }
-
-  res.status(302).json({
-    status: "success",
-    data: url,
-  });
+  res.redirect(url.originalUrl);
 });
 
 const deleteShortUrl = catchAsync(async (req, res, next) => {

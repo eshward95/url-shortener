@@ -17,7 +17,6 @@ const config = require("../config");
 //   "<PASSWORD>",
 //   process.env.DATABASE_PASSWORD
 // );
-
 mongoose
   .connect(config.mongo.uri, {
     // useNewUrlParser: true,

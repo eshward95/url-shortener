@@ -6,6 +6,7 @@ const shortUrlSchema = new Schema(
     originalUrl: { type: String, required: true },
     shortUrl: { type: String },
     hits: { type: Number, default: 0 },
+    existing: { type: Boolean, default: false },
   },
   { timestamps: true }
 );

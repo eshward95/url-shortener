@@ -3,8 +3,13 @@ const { objectIdToBase10 } = require("../utils/commonUtils");
 const { encoder } = require("../utils/encoding");
 
 const generateShortUrl = async (originalUrl) => {
-  const existingUrl = await Url.isUrlPresent(originalUrl);
+  let existingUrl = await Url.isUrlPresent(originalUrl);
   if (existingUrl) {
+    existingUrl = await Url.findByIdAndUpdate(
+      { _id: existingUrl._id },
+      { existing: true },
+      { new: true }
+    );
     return existingUrl;
   }
   try {
@@ -17,6 +22,7 @@ const generateShortUrl = async (originalUrl) => {
     url = await Url.findByIdAndUpdate(
       { _id: insertedId },
       { shortUrl: shortUrlId },
+      { existing: false },
       { new: true }
     );
 
@@ -28,7 +34,12 @@ const generateShortUrl = async (originalUrl) => {
 
 const redirectUrl = async (shortUrl) => {
   let existingUrl = await Url.findOne({ shortUrl: shortUrl });
-  return existingUrl;
+  if (existingUrl) {
+    existingUrl.hits += 1;
+    await existingUrl.save();
+    return existingUrl;
+  }
+  return null;
 };
 
 const deleteUrl = async (shortUrl) => {
