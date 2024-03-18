@@ -17,9 +17,10 @@ const config = require("../config");
 //   "<PASSWORD>",
 //   process.env.DATABASE_PASSWORD
 // );
+console.log(config.mongo.uri);
 mongoose
   .connect(config.mongo.uri, {
-    // useNewUrlParser: true,
+    useNewUrlParser: true,
     // useCreateIndex: true,
     // useFindAndModify: false,
     // useUnifiedTopology: true,
