@@ -41,10 +41,15 @@ export default function Layout() {
       </main>
       <Toaster />
 
-      {/* Footer (optional) */}
-      {/* <footer className="bg-gray-200 text-center p-4">
-        © {new Date().getFullYear()} My Website
-      </footer> */}
+      <footer className="text-center shadow">
+        <h1
+          className="font-semibold text-sm bg-gradient-to-r
+          from-[#A353AA] to-[#EB568E]
+        inline-block text-transparent bg-clip-text"
+        >
+          Made with :) by ED
+        </h1>
+      </footer>
     </div>
   );
 }
