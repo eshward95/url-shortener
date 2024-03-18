@@ -7,13 +7,13 @@ const cors = require("cors");
 const app = express();
 app.use(express.json());
 
-const allowedOrigin = "https://url-shortener-omega-three.vercel.app";
+const allowedOrigin = "http://localhost:5173";
 const corsOptions = {
   origin: allowedOrigin,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Specify the allowed HTTP methods
   allowedHeaders: ["Content-Type"], // Specify the allowed headers
 };
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use((req, res, next) => {
   res.setHeader("Content-Security-Policy", "default-src 'self';");
