@@ -1,11 +1,14 @@
 import "./App.css";
 import Layout from "./components/Layout";
 import { ListContextProvider } from "./context/ListContext";
+import { ThemeProvider } from "./context/ThemeProvider";
 
 function App() {
   return (
     <ListContextProvider>
-      <Layout />
+      <ThemeProvider defaultTheme="dark" storageKey="ui-theme">
+        <Layout />
+      </ThemeProvider>
     </ListContextProvider>
   );
 }

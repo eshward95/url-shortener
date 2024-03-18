@@ -18,7 +18,6 @@ const InputSection = () => {
     setInput("");
     try {
       const data = await createShortUrl(input);
-      console.log("creating", data);
       if (data.existing) {
         toast({
           duration: 500,
@@ -49,7 +48,6 @@ const InputSection = () => {
         addUrl(data);
       }
     } catch (error) {
-      console.log(error.message);
       toast({
         duration: 500,
         variant: "destructive",
@@ -69,7 +67,6 @@ const InputSection = () => {
     }
   };
   const checkUrl = (urlString) => {
-    console.log("called");
     const pattern = new RegExp(
       "^(https?:\\/\\/)?" + // protocol
         "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
@@ -79,7 +76,6 @@ const InputSection = () => {
         "(\\#[-a-z\\d_]*)?$",
       "i" // fragment locator
     );
-    console.log(pattern.test(urlString));
     return pattern.test(urlString);
   };
   return (

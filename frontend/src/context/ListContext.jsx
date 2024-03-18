@@ -14,7 +14,6 @@ export const ListContextProvider = ({ children }) => {
         setLoading(true);
       }
       const response = await getAllShortUrls();
-      console.log(response);
       setList(response.data);
     } catch (error) {
       console.log(error);
@@ -29,8 +28,7 @@ export const ListContextProvider = ({ children }) => {
   const addUrl = () => {
     fetchAllUrl();
   };
-  const deleteUrl = (data) => {
-    console.log("delete", data);
+  const deleteUrl = () => {
     fetchAllUrl();
   };
 

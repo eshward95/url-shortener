@@ -29,7 +29,6 @@ export function List() {
   const { list, deleteUrl, existingUrl } = useListContext();
   const onDelete = async (data) => {
     try {
-      console.log("Delete", data);
       const response = await deleteShortUrl(data.shortUrl);
       deleteUrl(response);
       toast({

@@ -1,26 +1,24 @@
 // import { URL } from "url";
-import { useEffect } from "react";
 import { useListContext } from "../context/ListContext";
 import InputSection from "./InputSection";
 import { List } from "./List";
+import { ModeToggle } from "./ModeToggle";
 import PageLoader from "./PageLoader";
 import { Toaster } from "./ui/toaster";
 
 export default function Layout() {
   const { loading } = useListContext();
-  useEffect(() => {
-    const root = window.document.documentElement;
-    // root.classList.add("dark");
-  }, []);
+
   if (loading) return <PageLoader />;
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header */}
       <header className="text-secondary p-4 shadow dark:shadow-[rgba(255,255,255,_0.24)_0px_1px_4px]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between">
           <h1 className="font-semibold text-3xl bg-gradient-to-r from-purple-400 to-pink-600 inline-block text-transparent bg-clip-text">
             Linkly
           </h1>
+          <ModeToggle />
         </div>
       </header>
 
