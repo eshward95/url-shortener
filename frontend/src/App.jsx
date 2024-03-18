@@ -1,11 +1,12 @@
 import "./App.css";
-import { Button } from "./components/ui/button";
+import Layout from "./components/Layout";
+import { ListContextProvider } from "./context/ListContext";
 
 function App() {
   return (
-    <>
-      <Button>Click me</Button>
-    </>
+    <ListContextProvider>
+      <Layout />
+    </ListContextProvider>
   );
 }
 
