@@ -20,7 +20,7 @@ const InputSection = () => {
       const data = await createShortUrl(input);
       if (data.existing) {
         toast({
-          duration: 500,
+          duration: 800,
           variant: "info",
           title: (
             <div className="flex items-center gap-2">
@@ -34,7 +34,7 @@ const InputSection = () => {
         setExistingUrl(data.long_url);
       } else {
         toast({
-          duration: 500,
+          duration: 800,
           variant: "success",
           title: (
             <div className="flex items-center gap-2">
@@ -49,7 +49,7 @@ const InputSection = () => {
       }
     } catch (error) {
       toast({
-        duration: 500,
+        duration: 800,
         variant: "destructive",
         title: (
           <div className="flex items-center gap-2">
@@ -66,18 +66,18 @@ const InputSection = () => {
       }, 500);
     }
   };
-  const checkUrl = (urlString) => {
-    const pattern = new RegExp(
-      "^(https?:\\/\\/)?" + // protocol
-        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-        "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-        "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-        "(\\#[-a-z\\d_]*)?$",
-      "i" // fragment locator
-    );
-    return pattern.test(urlString);
-  };
+  //   const checkUrl = (urlString) => {
+  //     const pattern = new RegExp(
+  //       "^(https?:\\/\\/)?" + // protocol
+  //         "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+  //         "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+  //         "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+  //         "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+  //         "(\\#[-a-z\\d_]*)?$",
+  //       "i" // fragment locator
+  //     );
+  //     return pattern.test(urlString);
+  //   };
   return (
     <>
       <div className="flex items-center space-x-2 self-stretch justify-center">
@@ -86,7 +86,7 @@ const InputSection = () => {
           placeholder="Enter URL"
           onChange={(e) => setInput(e.target.value)}
           className="max-w-[500px] outline-none bg-none focus-visible:ring-1 focus-visible:border-none focus-visible:ring-[#144EE3]/90"
-          value={input}
+          value={input || ""}
         />
         <Button
           type="submit"

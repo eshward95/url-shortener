@@ -1,8 +1,7 @@
-import { Button } from "./ui/button";
-
 import { useEffect } from "react";
 import { useListContext } from "../context/ListContext";
 import { deleteShortUrl } from "../services/api.service";
+import { Button } from "./ui/button";
 import {
   Table,
   TableBody,
@@ -32,7 +31,7 @@ export function List() {
       const response = await deleteShortUrl(data.shortUrl);
       deleteUrl(response);
       toast({
-        duration: 500,
+        duration: 800,
         variant: "success",
         title: (
           <div className="flex items-center gap-2">
@@ -45,7 +44,7 @@ export function List() {
       });
     } catch (error) {
       toast({
-        duration: 500,
+        duration: 800,
         variant: "destructive",
         title: (
           <div className="flex items-center gap-2">
@@ -61,7 +60,7 @@ export function List() {
   const copyToClipboard = (link) => {
     navigator.clipboard.writeText(link);
     toast({
-      duration: 500,
+      duration: 800,
       variant: "success",
       title: (
         <div className="flex items-center gap-2">
@@ -143,13 +142,11 @@ export function List() {
                       <div className="truncate max-w-60">
                         {link.originalUrl}
                       </div>
-                      <Button
-                        variant="ghost"
-                        size="sm"
+
+                      <i
+                        className="fa-regular fa-copy cursor-pointer"
                         onClick={() => copyToClipboard(link.originalUrl)}
-                      >
-                        <i className="fa-regular fa-copy"></i>
-                      </Button>
+                      />
                     </div>
                   </TooltipTrigger>
                   <TooltipContent className="bg-secondary-foreground text-secondary p-2">

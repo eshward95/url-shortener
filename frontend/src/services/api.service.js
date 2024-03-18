@@ -15,7 +15,6 @@ export async function createShortUrl(longUrl) {
     const response = await apiClient.post("/generate", {
       originalUrl: longUrl,
     });
-    console.log(response);
     return response.data.data;
   } catch (error) {
     console.error("Error creating short URL:", error);
