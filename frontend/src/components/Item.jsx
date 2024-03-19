@@ -26,9 +26,8 @@ const Item = ({ link }) => {
       const response = await deleteShortUrl(data.shortUrl);
       deleteUrl(response);
       toast({
-        duration: 800,
+        duration: 1000,
         variant: "success",
-        destroy: "true",
         title: (
           <div className="flex items-center gap-2">
             <i className="fa-regular fa-circle-check"></i>
@@ -40,7 +39,7 @@ const Item = ({ link }) => {
       });
     } catch (error) {
       toast({
-        duration: 800,
+        duration: 1000,
         variant: "destructive",
         title: (
           <div className="flex items-center gap-2">
@@ -58,7 +57,7 @@ const Item = ({ link }) => {
   const copyToClipboard = (link) => {
     navigator.clipboard.writeText(link);
     toast({
-      duration: 800,
+      duration: 1000,
       variant: "success",
       title: (
         <div className="flex items-center gap-2">

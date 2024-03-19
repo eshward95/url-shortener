@@ -20,7 +20,7 @@ const InputSection = () => {
       const data = await createShortUrl(input);
       if (data.existing) {
         toast({
-          duration: 800,
+          duration: 1000,
           variant: "info",
           title: (
             <div className="flex items-center gap-2">
@@ -34,7 +34,7 @@ const InputSection = () => {
         setExistingUrl(data.long_url);
       } else {
         toast({
-          duration: 800,
+          duration: 1000,
           variant: "success",
           title: (
             <div className="flex items-center gap-2">
@@ -49,7 +49,7 @@ const InputSection = () => {
       }
     } catch (error) {
       toast({
-        duration: 800,
+        duration: 1000,
         variant: "destructive",
         title: (
           <div className="flex items-center gap-2">
