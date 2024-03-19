@@ -72,7 +72,7 @@ const Item = ({ link }) => {
   return (
     <TableRow id={`row-${link._id}`}>
       <TableCell className="font-medium">
-        <span>{`${link.shortUrl}`}</span>
+        <span>{`${apiUrl}/${link.shortUrl}`}</span>
         <Button
           variant="ghost"
           size="sm"
@@ -92,7 +92,7 @@ const Item = ({ link }) => {
                   src={`https://www.google.com/s2/favicons?domain=${link.originalUrl}&sz=32`}
                   alt=""
                 />
-                <div className="truncate max-w-[650px]">{link.originalUrl}</div>
+                <div className="truncate max-w-[450px]">{link.originalUrl}</div>
 
                 <i
                   className="fa-regular fa-copy cursor-pointer"
