@@ -1,77 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useListContext } from "../context/ListContext";
-import { deleteShortUrl } from "../services/api.service";
-import { Button } from "./ui/button";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "./ui/table";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "./ui/tooltip";
-import { useToast } from "./ui/use-toast";
-
-// const CheckIcon = window.RadixIcons.Check;
+import Item from "./Item";
+import { Table, TableBody, TableHead, TableHeader, TableRow } from "./ui/table";
 
 export function List() {
-  const apiUrl = import.meta.env.VITE_SERVER_BASE_URL;
-  const { toast } = useToast();
+  const { list, existingUrl } = useListContext();
 
-  const { list, deleteUrl, existingUrl } = useListContext();
-  const onDelete = async (data) => {
-    try {
-      const response = await deleteShortUrl(data.shortUrl);
-      deleteUrl(response);
-      toast({
-        duration: 800,
-        variant: "success",
-        title: (
-          <div className="flex items-center gap-2">
-            <i className="fa-regular fa-circle-check"></i>
-            <span className="first-letter:capitalize">
-              Successfully deleted URL
-            </span>
-          </div>
-        ),
-      });
-    } catch (error) {
-      toast({
-        duration: 800,
-        variant: "destructive",
-        title: (
-          <div className="flex items-center gap-2">
-            <i className="fa-solid fa-circle-exclamation"></i>
-            <span className="first-letter:capitalize">
-              Error while deleting short URL
-            </span>
-          </div>
-        ),
-      });
-    }
-  };
-  const copyToClipboard = (link) => {
-    navigator.clipboard.writeText(link);
-    toast({
-      duration: 800,
-      variant: "success",
-      title: (
-        <div className="flex items-center gap-2">
-          <i className="fa-regular fa-circle-check"></i>
-          <span className="first-letter:capitalize">
-            URL copied to clipboard
-          </span>
-        </div>
-      ),
-    });
-  };
   useEffect(() => {
     if (existingUrl) {
       const matchingElement = list.find(
@@ -100,11 +34,12 @@ export function List() {
       }
     }
   }, [existingUrl, list]);
+  const reversedList = useMemo(() => [...list].reverse(), [list]);
 
   return (
     <Table className="mt-4">
-      <TableCaption>A list of recent URLs</TableCaption>
       <TableHeader>
+        {/* <TableCaption></TableCaption> */}
         <TableRow>
           <TableHead className="text-lg">Short Link</TableHead>
           <TableHead className="text-lg">Original Link</TableHead>
@@ -115,56 +50,8 @@ export function List() {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {list.map((link, i) => (
-          <TableRow key={i} id={`row-${link._id}`}>
-            <TableCell className="font-medium">
-              <span>{`${apiUrl}/${link.shortUrl}`}</span>
-
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => copyToClipboard(`${apiUrl}/${link.shortUrl}`)}
-              >
-                <i className="fa-regular fa-copy"></i>
-              </Button>
-            </TableCell>
-            <TableCell>
-              <TooltipProvider delayDuration={100}>
-                <Tooltip>
-                  <TooltipTrigger className="cursor-default">
-                    <div className="flex items-center gap-2">
-                      <img
-                        width={24}
-                        height={24}
-                        src={`https://www.google.com/s2/favicons?domain=${link.originalUrl}&sz=32`}
-                        alt=""
-                      />
-                      <div className="truncate max-w-60">
-                        {link.originalUrl}
-                      </div>
-
-                      <i
-                        className="fa-regular fa-copy cursor-pointer"
-                        onClick={() => copyToClipboard(link.originalUrl)}
-                      />
-                    </div>
-                  </TooltipTrigger>
-                  <TooltipContent className="bg-secondary-foreground text-secondary p-2">
-                    {link.originalUrl}
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </TableCell>
-
-            <TableCell>{link.hits}</TableCell>
-            {/* <TableCell>{link.status}</TableCell> */}
-            <TableCell>{new Date(link.createdAt).toUTCString()}</TableCell>
-            <TableCell className="cursor-pointer w-[10px]">
-              <Button variant="ghost" size="sm" onClick={() => onDelete(link)}>
-                <i className="fa-solid fa-trash text-red-600"></i>
-              </Button>
-            </TableCell>
-          </TableRow>
+        {reversedList.map((link, i) => (
+          <Item key={i} link={link} />
         ))}
       </TableBody>
     </Table>

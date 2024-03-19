@@ -41,10 +41,11 @@ export default function Layout() {
       </main>
       <Toaster />
 
-      <footer className="text-center shadow">
+      <footer className="text-center border-t border-neutral-200 dark:border-neutral-700">
         <h1
-          className="font-semibold text-sm bg-gradient-to-r
+          className="font-semibold text-md bg-gradient-to-r
           from-[#A353AA] to-[#EB568E]
+           my-3
         inline-block text-transparent bg-clip-text"
         >
           Made with :) by ED
