@@ -17,6 +17,9 @@ To gain insight into the design decisions and architecture, you can review the d
 **Light**
 ![Light](https://github.com/eshward95/url-shortener/blob/main/frontend/screenshots/light.png?raw=true)
 
+**When adding existing original URL**
+![URL](https://github.com/eshward95/url-shortener/blob/main/frontend/screenshots/existing-url.png?raw=true)
+
 
 ### Technologies Used
 
@@ -179,5 +182,4 @@ Error responses are typically sent with a non-2xx HTTP status code. Common error
   "message": "An error occurred while processing your request."
 }
 ```
-## Screenshot
 
